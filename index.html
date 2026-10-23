@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>InternPass — Student Internship Finder &amp; Application Tracker</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ LOGIN PAGE ============ -->
+<section id="page-login" class="page active login-page">
+  <div class="login-box">
+    <div class="brand">
+      <div class="brand-icon">🛂</div>
+      <h1>InternPass</h1>
+    </div>
+    <p class="subtitle">Student Internship Finder &amp; Application Tracker</p>
+
+    <div class="card">
+      <label class="field">
+        <span>Mail ID</span>
+        <input type="email" id="login-mail" placeholder="you@example.com" />
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" id="login-password" placeholder="••••••••" />
+      </label>
+      <p id="login-error" class="error-text hidden"></p>
+      <button class="btn btn-primary btn-full" id="login-btn">Login to InternPass →</button>
+      <p class="hint">Demo login — enter any mail ID / password, your account will be created automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="shell" class="shell hidden">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="sidebar">
+    <div class="brand brand-small">
+      <div class="brand-icon small">🛂</div>
+      <span>InternPass</span>
+    </div>
+    <nav class="nav-links">
+      <button class="nav-link active" data-page="home"><span>🏠</span> Home</button>
+      <button class="nav-link" data-page="profile"><span>👤</span> Profile</button>
+      <button class="nav-link" data-page="companies"><span>🏢</span> Companies</button>
+      <button class="nav-link" data-page="enquiry"><span>💬</span> Enquiry</button>
+      <button class="nav-link" data-page="tracker"><span>📋</span> Tracker</button>
+    </nav>
+    <button class="nav-link logout" id="logout-btn"><span>🚪</span> Logout</button>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- HOME -->
+    <section id="page-home" class="page app-page active">
+      <header class="page-header">
+        <h2 id="home-welcome">Welcome!</h2>
+        <p>Track your entire internship journey right here.</p>
+      </header>
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="quick-grid">
+        <button class="quick-card" data-goto="companies">
+          <div class="quick-icon">🏢</div>
+          <p class="quick-title">Find Internships</p>
+          <p class="quick-desc">Browse companies, filter by domain &amp; location.</p>
+        </button>
+        <button class="quick-card" data-goto="tracker">
+          <div class="quick-icon">📋</div>
+          <p class="quick-title">Application Tracker</p>
+          <p class="quick-desc">Add, update or remove applications.</p>
+        </button>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="page-profile" class="page app-page">
+      <header class="page-header">
+        <h2>Student Profile</h2>
+        <p>Keep this updated for the best company matches.</p>
+      </header>
+      <div class="form-wrap">
+        <div class="card">
+          <label class="field"><span>Name</span><input id="p-name" placeholder="Bhava" /></label>
+          <label class="field"><span>Qualification / Pursuing</span><input id="p-qualification" placeholder="BCA - 4th Semester" /></label>
+          <label class="field"><span>Skills</span><input id="p-skills" placeholder="HTML, CSS, JavaScript" /></label>
+          <label class="field"><span>Interested Domain</span><input id="p-domain" placeholder="Web Development" /></label>
+          <label class="field"><span>Location</span><input id="p-location" placeholder="Tiruchengode, TN" /></label>
+          <label class="field"><span>Location Looking For</span><input id="p-locationLookingFor" placeholder="Chennai / Remote" /></label>
+          <label class="field"><span>Phone No</span><input id="p-phone" placeholder="9876543210" /></label>
+          <label class="field"><span>Mail ID</span><input id="p-email" placeholder="bhava@example.com" /></label>
+          <label class="field"><span>Duration</span><input id="p-duration" placeholder="3 Months" /></label>
+          <button class="btn btn-primary" id="save-profile-btn">✓ Save Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section id="page-companies" class="page app-page">
+      <header class="page-header">
+        <h2>Company Display</h2>
+        <p>Browse the internship list and pick the ones matching your domain.</p>
+      </header>
+      <div class="filters-row">
+        <input id="company-search" class="search-input" placeholder="Search company or role..." />
+        <select id="company-domain-filter"></select>
+      </div>
+      <div class="grid-2" id="companies-grid"></div>
+    </section>
+
+    <!-- ENQUIRY -->
+    <section id="page-enquiry" class="page app-page">
+      <header class="page-header">
+        <h2>Enquiry</h2>
+        <p>Send a question directly to a company — replies are tracked here.</p>
+      </header>
+      <div class="grid-2 enquiry-layout">
+        <div class="card">
+          <label class="field"><span>Company Name</span><input id="enq-company" placeholder="Zoho Corporation" /></label>
+          <label class="field">
+            <span>Message</span>
+            <textarea id="enq-message" rows="4" placeholder="Hi, I'd like to know more about your internship openings..."></textarea>
+          </label>
+          <button class="btn btn-primary" id="send-enquiry-btn">➤ Send Enquiry</button>
+        </div>
+        <div class="stack" id="enquiry-list"></div>
+      </div>
+    </section>
+
+    <!-- TRACKER -->
+    <section id="page-tracker" class="page app-page">
+      <header class="page-header">
+        <h2>Application Tracker</h2>
+        <p>Update the status of each application — like getting a passport stamp.</p>
+      </header>
+      <button class="btn btn-dark" id="add-application-btn">+ Add Application</button>
+      <div id="application-form-slot"></div>
+      <div class="grid-2" id="applications-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Bottom nav (mobile) -->
+  <nav class="bottom-nav">
+    <button class="bottom-link active" data-page="home"><span>🏠</span><small>Home</small></button>
+    <button class="bottom-link" data-page="profile"><span>👤</span><small>Profile</small></button>
+    <button class="bottom-link" data-page="companies"><span>🏢</span><small>Companies</small></button>
+    <button class="bottom-link" data-page="enquiry"><span>💬</span><small>Enquiry</small></button>
+    <button class="bottom-link" data-page="tracker"><span>📋</span><small>Tracker</small></button>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
